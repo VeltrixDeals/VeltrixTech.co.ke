@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veltrix Tech Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Modern CSS Reset & Design Variables */
+:root {
+    --bg-main: #060b13;
+    --bg-surface: #0f172a;
+    --bg-surface-hover: #1e293b;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.15);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header & Logo styling */
+header {
+    padding: 100px 20px 80px 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, #0f2b48 0%, var(--bg-main) 70%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.logo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.03);
+    border-color: var(--accent);
+    box-shadow: 0 0 50px rgba(56, 189, 248, 0.4);
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    margin-bottom: 35px;
+    font-weight: 400;
+}
+
+/* Navigation Utilities */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: auto;
+}
+
+.nav a {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+}
+
+.nav a:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Main Layout Architecture */
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 80px 20px;
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Elite Component UI Cards */
+.card {
+    background: var(--bg-surface);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    background: var(--bg-surface-hover);
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Interactive elements inside features */
+#services .card {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Professional Action Buttons */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    color: #040811;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(56, 189, 248, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Portfolio Module Layout */
+#portfolio .card {
+    margin-bottom: 25px;
+}
+
+#portfolio .card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.poster-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: #000;
+}
+
+.poster {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.poster:hover {
+    transform: scale(1.04);
+    opacity: 0.9;
+}
+
+.portfolio-intro{
+max-width:800px;
+margin:0 auto 40px;
+text-align:center;
+opacity:.9;
+line-height:1.8;
+}
+
+.portfolio-project{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:20px;
+margin-bottom:35px;
+text-align:center;
+}
+
+.project-cover{
+width:100%;
+max-width:900px;
+border-radius:15px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.project-cover:hover{
+transform:scale(1.02);
+transition:.3s;
+}
+
+.gallery-title{
+text-align:center;
+margin:50px 0 25px;
+font-size:1.8rem;
+}
+
+.portfolio-shot{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.portfolio-shot:hover{
+transform:scale(1.05);
+}
+
+.poster{
+width:100%;
+border-radius:15px;
+cursor:pointer;
+}
+/*Pricing*/
+#pricing{
+padding:80px 20px;
+text-align:center;
+}
+
+.pricing-intro{
+max-width:800px;
+margin:0 auto 40px;
+opacity:.9;
+}
+
+.pricing-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+max-width:1100px;
+margin:auto;
+}
+
+.pricing-card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:20px;
+text-align:left;
+transition:.3s;
+}
+
+.pricing-card:hover{
+transform:translateY(-8px);
+}
+
+.featured{
+border:2px solid #d4af37;
+}
+
+.pricing-card h3{
+margin-bottom:15px;
+}
+
+.price{
+font-size:2rem;
+font-weight:bold;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.pricing-card ul{
+list-style:none;
+padding:0;
+}
+
+.pricing-card li{
+margin:12px 0;
+}
+
+.pricing-note{
+margin-top:40px;
+opacity:.9;
+}
+
+/* Core Corporate Copy Block */
+#about .card p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+#contact .card p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Footer layout */
+footer {
+    text-align: center;
+    padding: 80px 20px;
+    background: #030712;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+footer h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+footer .btn {
+    margin: 5px 8px;
+}
+
+.socials {
+    margin: 25px 0;
+}
+
+.socials a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.socials a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Absolute Black Modern Lightbox Overlay */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.95);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+</style>
+</head>
+<body>
+
+<header>
+<img src="https://i.imgur.com/fc7tuXi.png" alt="Veltrix Tech Lab Logo" class="logo">
+<h1>VELTRIX TECH LAB</h1>
+<p>Websites • Posters • Branding • Digital Solutions</p>
+<div class="nav">
+<a href="#services">Our Services</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#pricing">Pricing</a>
+<a href="#about">About Us</a>
+<a href="#contact">Contact Us</a>
+</div>
+</header>
+
+<section id="services">
+<h2>Our Services</h2>
+<div class="grid">
+<div class="card">🌐 Website Development</div>
+<div class="card">🎨 Poster Design</div>
+<div class="card">🏷️ Branding</div>
+<div class="card">📱 Social Media Graphics</div>
+<div class="card">🍽️ Restaurant Solutions</div>
+<div class="card">🏢 Business Digital Presence</div>
+</div>
+</section>
+
+<section id="portfolio">
+<h2>Our Portfolio</h2>
+
+<p class="portfolio-intro">
+Explore some of our recent projects and creative work from
+<strong>Veltrix Tech Lab</strong>. We specialize in modern,
+mobile-friendly websites, branding, and digital solutions.
+</p>
+
+<!-- WEBSITE 1 -->
+
+<div class="portfolio-project">
+
+<img
+src="https://i.imgur.com/lQGWgPY.jpeg"
+class="project-cover"
+onclick="openImg(this.src)">
+
+<h3> Website Sample 1</h3>
+
+<p>
+A modern restaurant website featuring online reservations,
+event booking, WhatsApp integration, and a premium user experience.
+</p>
+
+<a class="btn"
+href="https://veltrixtechlabs.github.io/Sample-website-/"
+target="_blank">
+View Demo
+</a>
+
+</div>
+
+<!-- WEBSITE 2 -->
+
+<div class="portfolio-project">
+
+<img
+src="https://i.imgur.com/BYNU8K9.jpeg"
+class="project-cover"
+onclick="openImg(this.src)">
+
+<h3> Website Sample 2</h3>
+
+<p>
+A luxury restaurant concept website showcasing elegant design,
+gallery sections, reservations, and event management features.
+</p>
+
+<a class="btn"
+href="https://veltrixtechlabs.github.io/Sample-2/"
+target="_blank">
+View Demo
+</a>
+
+</div>
+
+<!-- POSTER DESIGNS -->
+
+<h3 class="gallery-title">
+Poster Designs
+</h3>
+
+<div class="grid">
+
+<div class="card">
+<img class="poster"
+src="https://i.imgur.com/6jo3a09.png"
+onclick="openImg(this.src)">
+</div>
+
+<div class="card">
+<img class="poster"
+src="https://i.imgur.com/X4pCzg9.png"
+onclick="openImg(this.src)">
+</div>
+
+</div>
+    <h3>Ready to Grow Your Business Online?</h3>
+
+<a class="btn" href="https://wa.me/0117559174">
+Get Your Website Today
+</a>
+</section>
+
+<section id="pricing">
+
+<h2>Pricing</h2>
+
+<p class="pricing-intro">
+Every project is unique. Final pricing depends on the features,
+integrations, backend systems, and overall complexity required.
+</p>
+
+<div class="pricing-grid">
+
+<div class="pricing-card">
+
+<h3>Basic Website</h3>
+
+<div class="price">
+KSh 20,000
+</div>
+
+<p>Perfect for startups and small businesses.</p>
+
+<ul>
+<li>✓ Modern Design</li>
+<li>✓ Mobile Responsive</li>
+<li>✓ Contact Form</li>
+<li>✓ WhatsApp Integration</li>
+<li>✓ Up to 5 Pages</li>
+<li>✓ Fast Performance</li>
+</ul>
+
+</div>
+
+<div class="pricing-card featured">
+
+<h3>Custom Business Solutions</h3>
+
+<div class="price">
+KSh 50,000 – 150,000+
+</div>
+
+<p>
+For businesses requiring advanced functionality and custom systems.
+</p>
+
+<ul>
+<li>✓ Firebase Backend</li>
+<li>✓ Authentication Systems</li>
+<li>✓ Databases</li>
+<li>✓ Online Reservations</li>
+<li>✓ Custom Dashboards</li>
+<li>✓ Advanced Forms</li>
+<li>✓ API Integrations</li>
+<li>✓ Custom Features</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+<div class="card">
+<h2>About Us</h2>
+<p>Veltrix Tech Lab builds modern websites and eye-catching promotional materials for businesses.
+We help brands establish a strong online presence through clean design, responsive websites,
+and professional marketing content.</p>
+</div>
+</section>
+
+<section id="contact">
+<div class="card">
+<h2>Contact Us</h2>
+<p>📞 0117559174</p>
+</div>
+</section>
+
+<footer>
+<h3>Locations 📍</h3>
+<p>Mombasa • Kitui • Dar es Salaam • Dodoma</p>
+
+<p>
+<a class="btn" href="https://wa.me/254117559174">WhatsApp Us</a>
+<a class="btn" href="mailto:veltrixtechlabs@gmail.com">Email Us</a>
+</p>
+
+<div class="socials">
+<a href="https://www.facebook.com/share/1FCMT2kZwL/">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook" width="40"> Facebook
+</a>
+
+<a href="https://www.instagram.com/veltrix_tech_labs">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1280px-Instagram_logo_2016.svg.png" alt="Instagram" width="40"> Instagram
+</a>
+</div>
+
+<p style="margin-top:20px;">
+© 2026 Veltrix Tech Lab<br>
+Websites • Posters • Branding
+</p>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+<img id="lightboxImg">
+</div>
+
+<script>
+function openImg(src){
+document.getElementById('lightbox').style.display='flex';
+document.getElementById('lightboxImg').src=src;
+}
+</script>
+
+</body>
+</html>
