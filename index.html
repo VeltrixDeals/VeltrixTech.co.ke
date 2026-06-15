@@ -650,58 +650,6 @@ document.getElementById('lightbox').style.display='flex';
 document.getElementById('lightboxImg').src=src;
 }
 </script>
-<script>
-window.addEventListener('load', () => {
 
-setTimeout(() => {
-    window.scrollTo({
-        top: document.querySelector('#services').offsetTop - 80,
-        behavior: 'smooth'
-    });
-}, 5000);
-
-setTimeout(() => {
-    window.scrollTo({
-        top: document.querySelector('#portfolio').offsetTop - 80,
-        behavior: 'smooth'
-    });
-}, 15000);
-
-setTimeout(() => {
-    const firstWebsite = document.querySelector('.btn');
-    if(firstWebsite) firstWebsite.style.transform = 'scale(1.05)';
-}, 22000);
-
-setTimeout(() => {
-    window.scrollTo({
-        top: document.querySelector('#pricing').offsetTop - 80,
-        behavior: 'smooth'
-    });
-}, 28000);
-
-setTimeout(() => {
-    window.scrollTo({
-        top: document.querySelector('#about').offsetTop - 80,
-        behavior: 'smooth'
-    });
-}, 38000);
-
-setTimeout(() => {
-    window.scrollTo({
-        top: document.querySelector('#contact').offsetTop - 80,
-        behavior: 'smooth'
-    });
-}, 50000);
-
-setTimeout(() => {
-    const wa = document.querySelector('.whatsapp-float');
-    if(wa){
-        wa.style.transition = 'all 1s ease';
-        wa.style.transform = 'scale(1.3)';
-    }
-}, 58000);
-
-});
-</script>
 </body>
 </html>
